@@ -824,25 +824,28 @@ install_prepare_libev_obfs(){
 
 install_prepare(){
 
-    if  [[ "${selected}" == "1" || "${selected}" == "3" || "${selected}" == "4" ]]; then
-        install_prepare_password
-        install_prepare_port
-        install_prepare_cipher
-        if [ "${selected}" == "4" ]; then
-            install_prepare_libev_obfs
-        fi
-    elif [ "${selected}" == "2" ]; then
-        install_prepare_password
-        install_prepare_port
-        install_prepare_cipher
-        install_prepare_protocol
-        install_prepare_obfs
-    fi
-
-    echo
-    echo "Press any key to start...or Press Ctrl+C to cancel"
-    char=`get_char`
-
+#    if  [[ "${selected}" == "1" || "${selected}" == "3" || "${selected}" == "4" ]]; then
+#        install_prepare_password
+#        install_prepare_port
+#        install_prepare_cipher
+#        if [ "${selected}" == "4" ]; then
+#            install_prepare_libev_obfs
+#        fi
+#    elif [ "${selected}" == "2" ]; then
+#        install_prepare_password
+#        install_prepare_port
+#        install_prepare_cipher
+#        install_prepare_protocol
+#        install_prepare_obfs
+#    fi
+#
+#    echo
+#    echo "Press any key to start...or Press Ctrl+C to cancel"
+#    char=`get_char`
+    
+    install_prepare_password
+    install_prepare_port
+    install_prepare_cipher
 }
 
 install_libsodium(){
@@ -1136,25 +1139,29 @@ install_main(){
     fi
     ldconfig
 
-    if   [ "${selected}" == "1" ]; then
-        install_shadowsocks_python
-        install_completed_python
-        qr_generate_python
-    elif [ "${selected}" == "2" ]; then
-        install_shadowsocks_r
-        install_completed_r
-        qr_generate_r
-    elif [ "${selected}" == "3" ]; then
-        install_shadowsocks_go
-        install_completed_go
-        qr_generate_go
-    elif [ "${selected}" == "4" ]; then
-        install_mbedtls
-        install_shadowsocks_libev
-        install_shadowsocks_libev_obfs
-        install_completed_libev
-        qr_generate_libev
-    fi
+    install_shadowsocks_python
+    install_completed_python
+    qr_generate_python
+
+#    if   [ "${selected}" == "1" ]; then
+#        install_shadowsocks_python
+#        install_completed_python
+#        qr_generate_python
+#    elif [ "${selected}" == "2" ]; then
+#        install_shadowsocks_r
+#        install_completed_r
+#        qr_generate_r
+#    elif [ "${selected}" == "3" ]; then
+#        install_shadowsocks_go
+#        install_completed_go
+#        qr_generate_go
+#    elif [ "${selected}" == "4" ]; then
+#        install_mbedtls
+#        install_shadowsocks_libev
+#        install_shadowsocks_libev_obfs
+#        install_completed_libev
+#        qr_generate_libev
+#    fi
 
     echo
     echo "Welcome to visit: https://teddysun.com/486.html"
