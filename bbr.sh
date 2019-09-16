@@ -278,7 +278,7 @@ reboot_os() {
 #        echo -e "${green}Info:${plain} Reboot has been canceled..."
 #        exit 0
 #    fi
-    
+
     reboot
 }
 
@@ -384,7 +384,8 @@ echo
 echo " URL: https://teddysun.com/489.html"
 echo "----------------------------------------"
 echo
-echo "Press any key to start...or Press Ctrl+C to cancel"
+#echo "Press any key to start...or Press Ctrl+C to cancel"
+echo "Starting Install"
 #char=`get_char`
 
 install_bbr 2>&1 | tee ${cur_dir}/install_bbr.log
