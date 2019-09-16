@@ -589,34 +589,36 @@ install_check(){
 }
 
 install_select(){
-    if ! install_check; then
-        echo -e "[${red}Error${plain}] Your OS is not supported to run it!"
-        echo "Please change to CentOS 6+/Debian 7+/Ubuntu 12+ and try again."
-        exit 1
-    fi
-
-    clear
-    while true
-    do
-    echo  "Which Shadowsocks server you'd select:"
-    for ((i=1;i<=${#software[@]};i++ )); do
-        hint="${software[$i-1]}"
-        echo -e "${green}${i}${plain}) ${hint}"
-    done
-    read -p "Please enter a number (Default ${software[0]}):" selected
-    [ -z "${selected}" ] && selected="1"
-    case "${selected}" in
-        1|2|3|4)
-        echo
-        echo "You choose = ${software[${selected}-1]}"
-        echo
-        break
-        ;;
-        *)
-        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
-        ;;
-    esac
-    done
+#    if ! install_check; then
+#        echo -e "[${red}Error${plain}] Your OS is not supported to run it!"
+#        echo "Please change to CentOS 6+/Debian 7+/Ubuntu 12+ and try again."
+#        exit 1
+#    fi
+#
+#    clear
+#    while true
+#    do
+#    echo  "Which Shadowsocks server you'd select:"
+#    for ((i=1;i<=${#software[@]};i++ )); do
+#        hint="${software[$i-1]}"
+#        echo -e "${green}${i}${plain}) ${hint}"
+#    done
+#    read -p "Please enter a number (Default ${software[0]}):" selected
+#    [ -z "${selected}" ] && selected="1"
+#    case "${selected}" in
+#        1|2|3|4)
+#        echo
+#        echo "You choose = ${software[${selected}-1]}"
+#        echo
+#        break
+#        ;;
+#        *)
+#        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
+#        ;;
+#    esac
+#    done
+    
+    selected=1
 }
 
 install_prepare_password(){
@@ -842,7 +844,7 @@ install_prepare(){
 #    echo
 #    echo "Press any key to start...or Press Ctrl+C to cancel"
 #    char=`get_char`
-    
+
     install_prepare_password
     install_prepare_port
     install_prepare_cipher
