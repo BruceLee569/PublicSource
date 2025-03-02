@@ -17,6 +17,7 @@ alias tmls='tmux -u ls'
 alias tmnew='tmux -u new -s'
 alias tmin='tmux -u attach -t'
 alias tmkill='tmux -u kill-session -t'
+alias qzgx='git fetch origin main && git reset --hard origin/main'  # Git仓库强制更新到本地
 
 # 网络类
 alias curltime="curl -w \"@$HOME/.curl-format\" -o /dev/null -s "
