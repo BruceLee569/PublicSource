@@ -11,6 +11,7 @@ alias vi='vim'
 alias sys='systemctl'
 alias vbr='vi ~/.bashrc'
 alias sbr='source ~/.bashrc'
+alias svenv='source ./venv/bin/activate'
 
 # 应用类
 alias py='python'
