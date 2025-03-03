@@ -14,6 +14,7 @@ alias sys='systemctl'
 alias vbr='vi ~/.bashrc'
 alias sbr='source ~/.bashrc'
 alias svenv='source ./venv/bin/activate'
+alias killpid='kill -9 $(cat pid.txt)'
 
 # 应用类
 alias py='python'
