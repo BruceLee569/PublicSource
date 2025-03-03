@@ -1,6 +1,8 @@
 # 终端命令提示符显示
 export PS1='\[\e[31;1m\]\u\[\e[0m\]\[\e[32;1m\]\[\e[0m\]:\[\e[35;1m\]\w\[\e[0m\]\$ '
 export PS1="$PS1\[\e]1337;CurrentDir="'$(pwd)\a\]'    # 报告 CWD 给远程终端
+export LANG=zh_CN.UTF-8   # 终端显示中文
+export LC_ALL=zh_CN.UTF-8
 
 # 基础类
 alias ll='ls -alh'
