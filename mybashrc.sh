@@ -16,6 +16,9 @@ alias sbr='source ~/.bashrc'
 alias svenv='source ./venv/bin/activate'
 alias killpid='kill -9 $(cat pid.txt)'
 
+# AutoDL 服务器
+[ -d "/root/autodl-tmp/" ] && cd /root/autodl-tmp/   # 默认进入数据盘
+
 # 应用类
 alias py='python'
 alias tmls='tmux -u ls'
