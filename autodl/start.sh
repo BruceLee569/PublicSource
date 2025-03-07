@@ -11,7 +11,6 @@ musechat_dir=/root/autodl-tmp/MuseChat
 log_dir=/root/autodl-tmp/logs
 mkdir -p "$log_dir" || { echo "Failed to create log directory: $log_dir"; exit 1; }
 
-conda init bash && source ~/.bashrc # 更新bashrc中的环境变量，方便激活环境
 
 # 获取CPU核心数
 get_cpu_core_count() {
@@ -35,7 +34,7 @@ start_asr_service() {
     io_thread_num=$(( (decoder_thread_num + multiple_io - 1) / multiple_io ))
     model_thread_num=1
 
-    echo "Starting ASR service at: $port"
+    echo "Starting ASR service on port: $port"
 
     nohup "$cmd_path/funasr-wss-server-2pass" \
         --download-model-dir "${model_dir}" \
@@ -78,6 +77,7 @@ start_tts_service() {
     cd "$cosyvoice_dir" || { echo "Failed to enter TTS directory"; return 1; }
 
     # 激活Conda环境
+    conda init
     if ! conda activate cosyvoice; then
         echo "Failed to activate Conda environment 'cosyvoice'"
         return 1
@@ -96,6 +96,7 @@ start_muse_chat_service() {
     cd "$musechat_dir" || { echo "Failed to enter MuseChat directory"; return 1; }
 
     # 激活Conda环境
+    conda init
     if ! conda activate musechat; then
         echo "Failed to activate Conda environment 'musechat'"
         return 1
