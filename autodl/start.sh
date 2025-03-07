@@ -63,7 +63,7 @@ start_llm_service() {
     echo "Starting LLM service on port 8080"
 
     nohup ./build/bin/llama-server \
-        -m "/root/autodl-tmp/models/Qwen2-7B/Qwen2-7B-Multilingual-RP.Q6_K.gguf" \
+        -m "/root/autodl-tmp/models/llm/Qwen2-7B-Multilingual-RP.Q8_0.gguf" \
         -ngl 100 \
         --host 0.0.0.0 \
         --port 8080 > "${log_dir}/llm.log" 2>&1 &
