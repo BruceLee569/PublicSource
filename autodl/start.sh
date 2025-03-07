@@ -5,11 +5,13 @@ model_dir=/root/autodl-tmp/models
 funasr_dir=/root/autodl-tmp/FunASR
 llama_cpp_dir=/root/autodl-tmp/llama.cpp
 cosyvoice_dir=/root/autodl-tmp/CosyVoice
-musechat_dir=/root/autodl-tmp/MushChat
+musechat_dir=/root/autodl-tmp/MuseChat
 
 # 日志和PID文件路径
 log_dir=/root/autodl-tmp/logs
 mkdir -p "$log_dir" || { echo "Failed to create log directory: $log_dir"; exit 1; }
+
+conda init bash && source ~/.bashrc # 更新bashrc中的环境变量，方便激活环境
 
 # 获取CPU核心数
 get_cpu_core_count() {
@@ -33,11 +35,7 @@ start_asr_service() {
     io_thread_num=$(( (decoder_thread_num + multiple_io - 1) / multiple_io ))
     model_thread_num=1
 
-    echo "Starting ASR service with:"
-    echo "  Decoder Threads: $decoder_thread_num"
-    echo "  IO Threads: $io_thread_num"
-    echo "  Model Threads: $model_thread_num"
-    echo "  Port: $port"
+    echo "Starting ASR service at: $port"
 
     nohup "$cmd_path/funasr-wss-server-2pass" \
         --download-model-dir "${model_dir}" \
@@ -95,7 +93,7 @@ start_tts_service() {
 
 # 启动 MuseChat，统一8000端口对外提供服务
 start_muse_chat_service() {
-    cd "$musechat_dir" || { echo "Failed to enter MushChat directory"; return 1; }
+    cd "$musechat_dir" || { echo "Failed to enter MuseChat directory"; return 1; }
 
     # 激活Conda环境
     if ! conda activate musechat; then
@@ -103,12 +101,12 @@ start_muse_chat_service() {
         return 1
     fi
 
-    echo "Starting MushChat service"
+    echo "Starting MuseChat service"
 
     nohup python main.py > "${log_dir}/musechat.log" 2>&1 &
 
     echo $! > "${log_dir}/musechat.pid"
-    echo "MushChat service started. PID: $(cat "${log_dir}/musechat.pid")"
+    echo "MuseChat service started. PID: $(cat "${log_dir}/musechat.pid")"
 }
 
 # 主函数
