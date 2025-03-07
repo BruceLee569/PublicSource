@@ -8,7 +8,7 @@ cosyvoice_dir=/root/autodl-tmp/CosyVoice
 musechat_dir=/root/autodl-tmp/MushChat
 
 # 日志和PID文件路径
-log_dir=./logs
+log_dir=/root/autodl-tmp/logs
 mkdir -p "$log_dir" || { echo "Failed to create log directory: $log_dir"; exit 1; }
 
 # 获取CPU核心数
