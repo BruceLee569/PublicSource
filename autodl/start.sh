@@ -76,22 +76,18 @@ start_llm_service() {
 start_tts_service() {
     cd "$cosyvoice_dir" || { echo "Failed to enter TTS directory"; return 1; }
 
-    # 激活Conda环境
-    if [ -f "/root/miniconda3/etc/profile.d/conda.sh" ]; then
-        source "/root/miniconda3/etc/profile.d/conda.sh"
-    else
-        echo "Conda initialization script not found. Please check your Conda installation."
-        exit 1
-    fi
+    # 获取Conda环境中的Python路径
+    conda_env_python="/root/autodl-tmp/conda/envs/cosyvoice/bin/python"
     
-    if ! conda activate cosyvoice; then
-        echo "Failed to activate Conda environment 'cosyvoice'"
-        return 1
+    # 检查Python解释器是否存在
+    if [ ! -f "$conda_env_python" ]; then
+        echo "Python interpreter not found in Conda environment 'cosyvoice'. Path: $conda_env_python"
+        exit 1
     fi
 
     echo "Starting TTS service"
 
-    nohup python server.py > "${log_dir}/tts.log" 2>&1 &
+    nohup "$conda_env_python" server.py > "${log_dir}/tts.log" 2>&1 &
 
     echo $! > "${log_dir}/tts.pid"
     echo "TTS service started. PID: $(cat "${log_dir}/tts.pid")"
@@ -100,18 +96,14 @@ start_tts_service() {
 # 启动 MuseChat，统一8000端口对外提供服务
 start_muse_chat_service() {
     cd "$musechat_dir" || { echo "Failed to enter MuseChat directory"; return 1; }
-
-    # 激活Conda环境
-    if [ -f "/root/miniconda3/etc/profile.d/conda.sh" ]; then
-        source "/root/miniconda3/etc/profile.d/conda.sh"
-    else
-        echo "Conda initialization script not found. Please check your Conda installation."
-        exit 1
-    fi
     
-    if ! conda activate musechat; then
-        echo "Failed to activate Conda environment 'musechat'"
-        return 1
+    # 获取Conda环境中的Python路径
+    conda_env_python="/root/autodl-tmp/conda/envs/musechat/bin/python"
+    
+    # 检查Python解释器是否存在
+    if [ ! -f "$conda_env_python" ]; then
+        echo "Python interpreter not found in Conda environment 'musechat'. Path: $conda_env_python"
+        exit 1
     fi
 
     echo "Starting MuseChat service"
