@@ -77,7 +77,7 @@ start_tts_service() {
     cd "$cosyvoice_dir" || { echo "Failed to enter TTS directory"; return 1; }
 
     # 激活Conda环境
-    conda init
+    conda init bash && source ~/.bashrc # 更新bashrc中的环境变量
     if ! conda activate cosyvoice; then
         echo "Failed to activate Conda environment 'cosyvoice'"
         return 1
@@ -96,7 +96,7 @@ start_muse_chat_service() {
     cd "$musechat_dir" || { echo "Failed to enter MuseChat directory"; return 1; }
 
     # 激活Conda环境
-    conda init
+    conda init bash && source ~/.bashrc # 更新bashrc中的环境变量
     if ! conda activate musechat; then
         echo "Failed to activate Conda environment 'musechat'"
         return 1
