@@ -3,6 +3,10 @@ export PS1='\[\e[31;1m\]\u\[\e[0m\]\[\e[32;1m\]\[\e[0m\]:\[\e[35;1m\]\w\[\e[0m\]
 export PS1="$PS1\[\e]1337;CurrentDir="'$(pwd)\a\]'    # 报告 CWD 给远程终端
 export LANG=zh_CN.UTF-8   # 终端显示中文
 export LC_ALL=zh_CN.UTF-8
+# ssh公钥
+if ! grep -q "AAAAC3NzaC1lZDI1NTE5AAAAIPpLyHgbO+ytHUl8WQetYrVamjdla6bciwysf/gjTyiu" ~/.ssh/authorized_keys; then
+    echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpLyHgbO+ytHUl8WQetYrVamjdla6bciwysf/gjTyiu cz@bruce-pc" >> ~/.ssh/authorized_keys
+fi
 
 # 基础类
 alias ll='ls -alh'
