@@ -28,10 +28,19 @@ alias killpid='kill -9 $(cat pid.txt)'
 
 # 应用类
 alias py='python'
+
 alias tmls='tmux -u ls'
 alias tmnew='tmux -u new -s'
-alias tmin='tmux -u attach -t'
+alias tm='_tmux_attach'
+_tmux_attach() {
+    if [ $# -eq 0 ]; then
+        tmux -u attach
+    else
+        tmux -u attach -t "$1"
+    fi
+}
 alias tmkill='tmux -u kill-session -t'
+
 alias qzgx='git fetch origin main && git reset --hard origin/main'  # Git仓库强制更新到本地
 
 # 网络类
